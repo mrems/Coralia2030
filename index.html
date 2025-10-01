@@ -136,7 +136,7 @@
                 <p class="section-text">
                     Lors de cette semaine exceptionnelle nous rassemblerons scientifiques, institutions, associations, entreprises et grand public autour du thème de la préservation et de l'innovation des lagons. Au programme : des experts de renommée mondiale, des conférences de haut niveau, des ateliers éducatifs et des événements culturels
                 </p>
-                <img src="https://www.super-abu.com/coralia/coralia-9.jpg" alt="Événement Coralia" class="main-image">
+                <!-- <img src="https://www.super-abu.com/coralia/coralia-9.jpg" alt="Événement Coralia" class="main-image"> -->
                 <ul class="bullet-list">
                     <li>Conférences d'experts sur la biodiversité, le corail et les techniques de restauration</li>
                     <li>Visites guidées des aménagements et de la ferme de corail</li>
@@ -225,6 +225,31 @@
         document.querySelectorAll('.content-section').forEach(section => {
             observer.observe(section);
         });
+
+        // Navigation active au scroll
+        const sections = document.querySelectorAll('.content-section, .footer-section');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        const highlightNav = () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', highlightNav);
 
         // Ralentir la vitesse de la vidéo
         const heroVideo = document.querySelector('.hero-video');

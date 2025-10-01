@@ -157,7 +157,7 @@ body {
 .header-section {
     height: 100vh;
     max-height: 1000px;
-    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), 
+    background: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), 
                 url('https://www.super-abu.com/coralia/coralia-1.jpg');
     background-size: cover;
     background-position: center;
@@ -213,7 +213,7 @@ body {
     font-size: 7rem;
     font-weight: bold;
     color: rgb(234, 234, 234);
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    /* text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7); */
     line-height: .6;
     margin: 0;
     transform: translateY(150px);

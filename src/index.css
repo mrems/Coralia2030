@@ -24,8 +24,8 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    display: flex; /* Réintroduit */
+    flex-direction: column; /* Réintroduit */
 }
 
 /* Image d'arrière-plan statique */
@@ -76,9 +76,9 @@ body {
 #projet .card .bullet-list li, 
 #projet .card .special-text, 
 #projet .card .subtitle, 
-#projet .card .footer-text, 
-#projet .card .footer-title, 
-#projet .card .footer-contact,
+#projet .card .contact-text, 
+#projet .card .contact-title, 
+#projet .card .contact-info,
 .saint-pierre-text .section-title,
 .saint-pierre-text .subtitle,
 .saint-pierre-text .section-text,
@@ -140,11 +140,12 @@ body {
     text-align: center;
     font-style: italic;
     margin: 0;
-    padding: 1rem;
+    padding: .3rem;
+    margin-bottom: 1rem;
     background: rgba(1, 153, 166, 0.1);
     border-left: 4px solid #0199a6;
     border-radius: 10px;
-    width: 90%;
+    width: 75%;
     max-width: 600px;
 }
 
@@ -280,9 +281,10 @@ body {
  * ======================================= */
 
 .navbar {
-    position: relative;
+    position: relative; /* Changé de absolute à relative */
     top: 0;
     width: 100%;
+    height: 70px; /* Hauteur fixe pour la navbar */
     background: rgba(255, 255, 255, 0);
     backdrop-filter: blur(0px);
     z-index: 1000;
@@ -326,7 +328,7 @@ body {
 }
 
 .nav-menu a:hover {
-    color: #00bcd4;
+    color: #19e4ff;
 }
 
 .nav-menu a::after {
@@ -336,22 +338,18 @@ body {
     height: 2px;
     bottom: -5px;
     left: 0;
-    background-color: #0199a6;
+    background-color: #00e1ffc2;
     transition: width 0.3s ease;
-}
-
-.nav-menu a:hover::after {
-    width: 100%;
 }
 
 /* Style pour les liens actifs */
 .nav-menu a.active {
-    color: #00bcd4;
+    color: #19e4ff;
 }
 
 .nav-menu a.active::after {
     width: 100%;
-    background-color: #00bcd4;
+    background-color: #00e1ffc8;
 }
 
 /* Hamburger menu */
@@ -375,19 +373,22 @@ body {
 
 /* Wrapper pour le contenu dynamique */
 .content-wrapper {
-    flex-grow: 1;
+    flex-grow: 1; /* Remplace position: absolute, top, height */
+    /* Supprimé: top: 70px; */
+    width: 100%;
+    /* Supprimé: height: calc(100% - 70px); */
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
     overflow: hidden;
+    position: relative; /* Garder ceci pour les overlays internes */
+    z-index: 1; /* Z-index inférieur à la navbar */
 }
 
 /* Contenu de la section Hero (le texte) */
 .header-content {
-    max-width: 90%;
+    max-width: 80%;
     padding: 1rem;
-    animation: fadeInUp 1s ease-out;
     position: relative;
     z-index: 2;
     text-align: center;
@@ -448,6 +449,12 @@ body {
 #projet .card .special-text {
     background: linear-gradient(135deg, #0199a6, #00bcd4);
     color: white;
+}
+
+/* Styles spécifiques pour le texte de la section "Le Projet" */
+#projet .card .section-text {
+    width: 80%;
+    max-width: 700px;
 }
 
 /* ======================================= *
@@ -549,7 +556,9 @@ body {
     width: 100%;
 }
 
-
+#etang-sale .card .section-title {
+    margin-bottom: 2rem;
+}
 
 .etang-sale-layout {
     display: flex;
@@ -655,7 +664,7 @@ body {
     justify-content: center;
     text-align: left;
     padding: 0.2rem;
-    width: 600px !important;
+    width: 600px;
 }
 
 /* ======================================= *
@@ -679,13 +688,46 @@ body {
     color: white;
 }
 
+.hero-title {
+    font-size: 5rem; /* Augmentez la taille de la police selon vos préférences */
+    font-weight: bold;
+    line-height: 1;
+    color: rgb(234, 234, 234);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.hero-title .reunion-highlight {
+    font-size: 1.6em; 
+}
+
+.hero-button {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    background-color: #00bcd4; /* Couleur de bouton personnalisée */
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.hero-button:hover {
+    background-color: #0199a6; /* Assombrir au survol */
+    transform: translateY(-2px);
+}
+
 /* #contact.content-section .footer-text, 
 #contact.content-section .footer-title, 
 #contact.content-section .footer-contact {
     color: #fdfdfd;
 } */
 
-.footer-text {
+/* .contact-text */
+.contact-text {
     font-size: 0.9rem;
     line-height: 1.5;
     margin: 0.5rem auto 0 auto;
@@ -695,21 +737,23 @@ body {
     max-width: 600px;
 }
 
-.footer-title {
+/* .contact-title */
+.contact-title {
     font-size: 2.5rem;
     margin: 0;
     position: relative;
     z-index: 1;
 }
 
-.footer-contact {
+/* .contact-info */
+.contact-info {
     font-size: 0.9rem;
     margin: 0.8rem 0;
     position: relative;
     z-index: 1;
 }
 
-.footer-contact a {
+.contact-info a {
     color: white;
     font-weight: bold;
     text-decoration: none;
@@ -721,18 +765,25 @@ body {
     margin: 0.3rem;
 }
 
-.footer-contact a:hover {
+.contact-info a:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
 }
 
-#contact.content-section .footer-contact a {
+#contact.content-section .contact-info a {
     color: white;
-    background: rgba(1, 152, 166, 0.525);
+    background: rgba(255, 255, 255, 0.226);
 }
 
-#contact.content-section .footer-contact a:hover {
+#contact.content-section .contact-info a:hover {
     background: rgba(1, 153, 166, 0.3);
+}
+
+/* Force la couleur du texte de la section Contact à un blanc pur */
+#contact .contact-text,
+#contact .contact-title,
+#contact .contact-info {
+    color: #FFFFFF;
 }
 
 /* ======================================= *

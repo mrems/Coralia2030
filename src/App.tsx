@@ -7,26 +7,12 @@ const App: React.FC = () => {
     if (activeSection === null) {
       return (
         <div className="header-content">
-          <div className="hero-title-container">
-            <div className="hero-word-container">
-              <div className="hero-word">Un</div>
-            </div>
-            <div className="hero-word-container">
-              <div className="hero-word">Projet</div>
-            </div>
-            <div className="hero-word-container">
-              <div className="hero-word">unique</div>
-            </div>
-            <div className="hero-word-container">
-              <div className="hero-word">pour</div>
-            </div>
-            <div className="hero-word-container">
-              <div className="hero-word">la</div>
-            </div>
-            <div className="hero-word-container">
-              <div className="hero-word">Réunion</div>
-            </div>
-          </div>
+          <h1 className="hero-title">Un Projet unique pour la <span className="reunion-highlight">Réunion</span></h1>
+          <a href="#contact" className="hero-button" onClick={(e) => {
+            e.preventDefault();
+            setActiveSection('contact');
+            document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+          }}>AIDEZ NOUS</a>
         </div>
       );
     }
@@ -128,14 +114,13 @@ const App: React.FC = () => {
         return (
           <footer id="contact" className="content-section">
             <div className="card">
-              <p className="footer-text">
+              <p className="contact-text">
                 Ce projet a besoin de relais, de bénévoles, de partenaires et d'enthousiasme. Que vous soyez particulier, association, entreprise ou institution, votre implication peut tout changer.
               </p>
+              <h2 className="contact-title">Aidez nous !</h2>
+              <p className="contact-text">Participez à l'aventure, diffusez notre initiative ou contactez-nous, votre soutien est essentiel pour assurer l'avenir de Coralia.</p>
               <br />
-              <h2 className="footer-title">Aidez nous !</h2>
-              <p className="footer-text">Participez à l'aventure, diffusez notre initiative ou contactez-nous, votre soutien est essentiel pour assurer l'avenir de Coralia.</p>
-              <br />
-              <p className="footer-contact">
+              <p className="contact-info">
                 Pour nous joindre ou pour nous soutenir :<br />
                 <a href="mailto:mat_mail@ymail.com">mat_mail@ymail.com</a> / <a href="tel:0693499085">06 93 49 90 85</a>
               </p>
@@ -153,6 +138,7 @@ const App: React.FC = () => {
       <video className="hero-video-background" autoPlay muted loop playsInline>
         <source src="/bg.mp4" type="video/mp4" />
       </video>
+      
       <nav className="navbar transparent">
         <div className="nav-container">
           <div className="nav-logo">
@@ -198,6 +184,8 @@ const App: React.FC = () => {
         </div>
       </nav>
       <div className="content-wrapper">
+        {/* Overlay de chargement pour les transitions entre sections */}
+        
         {renderContent()}
       </div>
     </div>

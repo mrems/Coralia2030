@@ -142,7 +142,7 @@ const App: React.FC = () => {
       <nav className="navbar transparent">
         <div className="nav-container">
           <div className="nav-logo">
-            <h2>CORALIA 2030</h2>
+            <h2>CORALIA 2032</h2>
           </div>
           <ul className="nav-menu">
             <li><a href="#home" onClick={(e) => {

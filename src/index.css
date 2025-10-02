@@ -59,7 +59,7 @@ body {
     background-color: transparent;
     backdrop-filter: blur(10px);
     padding: 1.5rem;
-    border-radius: 10px;
+    border-radius: 25px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 90%;
     margin: 0 auto;
@@ -127,7 +127,7 @@ body {
     font-size: 0.9rem;
     line-height: 1.5;
     color: white;
-    margin-bottom: 1rem;
+    margin-bottom: .3rem;
     text-align: left;
     width: 90%;
     max-width: 800px;
@@ -159,6 +159,7 @@ body {
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.779);
 }
 
 .main-image:hover {
@@ -186,10 +187,11 @@ body {
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.776);
 }
 
 .image-grid img:hover {
-    transform: translateY(-5px);
+    transform: scale(1.02);
 }
 
 /* Styles des sous-titres (génériques) */
@@ -200,6 +202,7 @@ body {
     font-weight: 600;
     width: 90%;
     max-width: 600px;
+    margin-bottom: .2rem;
 }
 
 /* Styles des listes (génériques) */
@@ -230,7 +233,7 @@ body {
 
 /* Styles du texte spécial (générique) */
 .special-text {
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.2;
     color: white;
     font-weight: 600;
@@ -240,12 +243,12 @@ body {
     background: linear-gradient(135deg, #0199a6, #00bcd4);
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(1, 153, 166, 0.3);
-    width: 90%;
+    width: 85%;
     max-width: 600px;
 }
 
 /* Animations générales */
-@keyframes fadeInUp {
+/* @keyframes fadeInUp {
     from {
         opacity: 0;
         transform: translateY(30px);
@@ -276,6 +279,15 @@ body {
     }
 }
 
+@keyframes fadeInHeaderContent {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+} */
+
 /* ======================================= *
  *         2. STYLES DE LA NAVIGATION      *
  * ======================================= */
@@ -291,7 +303,7 @@ body {
     padding: 0.8rem 0;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0);
     transition: all 0.3s ease;
-    opacity: 1;
+    opacity: 1; /* Rétabli pour que la navbar soit visible par défaut */
 }
 
 .nav-container {
@@ -383,16 +395,22 @@ body {
     overflow: hidden;
     position: relative; /* Garder ceci pour les overlays internes */
     z-index: 1; /* Z-index inférieur à la navbar */
+    /* transition: opacity 0.5s ease-out; */ /* Transition pour le fondu entrant plus rapide */
 }
 
 /* Contenu de la section Hero (le texte) */
 .header-content {
     max-width: 80%;
-    padding: 1rem;
+    padding: 3rem;
     position: relative;
     z-index: 2;
     text-align: center;
     color: white;
+    background-color: transparent; /* Ajouté */
+    backdrop-filter: blur(10px); /* Ajouté */
+    border-radius: 25px;
+    opacity: 1; /* Opacité initiale pour l'animation */
+    /* animation: fadeInHeaderContent 1s ease-out forwards; */ /* Animation de fondu */
 }
 
 .hero-title-container {
@@ -921,4 +939,94 @@ body {
     .footer-title {
         font-size: 1.8rem;
     }
+}
+
+.clickable-image {
+  cursor: pointer;
+}
+
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.lightbox-image {
+  max-width: 70%;
+  max-height: 80%;
+  object-fit: contain;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.779);
+}
+
+.lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent; /* Fond transparent */
+  color: rgba(255, 255, 255, 0.7); /* Couleur de flèche plus discrète */
+  border: none;
+  padding: 0 10px; /* Moins de padding */
+  cursor: pointer;
+  font-size: 1.8rem; /* Taille de police plus petite */
+  z-index: 1001;
+  transition: color 0.3s ease, text-shadow 0.3s ease; /* Transition pour un effet doux */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Ombre discrète pour la visibilité */
+}
+
+.lightbox-arrow:hover {
+  background-color: transparent; /* Reste transparent au survol */
+  color: white; /* Plus visible au survol */
+  text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.8); /* Ombre plus prononcée au survol */
+}
+
+.lightbox-arrow.disabled-arrow {
+  opacity: 0.3;
+  cursor: default;
+  color: rgba(255, 255, 255, 0.6); /* Couleur de flèche plus faible */
+  text-shadow: none; /* Pas d'ombre pour l'état désactivé */
+}
+
+.lightbox-arrow-left {
+  left: 10%; /* Rapproche de l'image */
+}
+
+.lightbox-arrow-right {
+  right: 10%; /* Rapproche de l'image */
+}
+
+.lightbox-indicators {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  gap: 8px;
+  z-index: 1001;
+}
+
+.indicator-dot {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.5); /* Points discrets */
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.indicator-dot:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  transform: scale(1.1);
+}
+
+.indicator-dot.active {
+  background-color: white; /* Point actif plus visible */
+  transform: scale(1.2);
 }

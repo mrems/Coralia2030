@@ -1,7 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(false); // Nouvel état pour la transition
+  const [lightboxState, setLightboxState] = useState<{ images: string[]; currentIndex: number } | null>(null); // Nouvel état pour la lightbox
+
+  const openLightbox = (clickedImageSrc: string, allImagesInCurrentSection: string[]) => {
+    const currentIndex = allImagesInCurrentSection.indexOf(clickedImageSrc);
+    if (currentIndex !== -1) {
+      setLightboxState({ images: allImagesInCurrentSection, currentIndex });
+    }
+  };
+
+  const closeLightbox = () => {
+    setLightboxState(null);
+  };
+
+  const showNextImage = () => {
+    if (lightboxState && lightboxState.currentIndex < lightboxState.images.length - 1) {
+      setLightboxState(prevState => prevState ? { ...prevState, currentIndex: prevState.currentIndex + 1 } : null);
+    }
+  };
+
+  const showPreviousImage = () => {
+    if (lightboxState && lightboxState.currentIndex > 0) {
+      setLightboxState(prevState => prevState ? { ...prevState, currentIndex: prevState.currentIndex - 1 } : null);
+    }
+  };
+
+  useEffect(() => {
+    // L'animation initiale du hero-content (uniquement au premier chargement) et de la navbar est supprimée.
+    // Remettre le comportement par défaut si nécessaire via CSS.
+  }, []); // Dépendances vides pour n'exécuter qu'une fois au montage du composant
+
+  const handleSectionChange = (sectionId: string | null, targetElementId: string | null) => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+
+    // Animer la page sortante avec une transition CSS
+    // La classe 'fade-out' sera gérée par CSS si elle est présente
+
+    setTimeout(() => {
+      setActiveSection(sectionId);
+      if (targetElementId) {
+        document.getElementById(targetElementId)?.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        document.getElementById('root')?.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      setIsTransitioning(false); // Le fondu entrant est géré par la transition CSS par défaut
+    }, 200); // Durée du fondu sortant (0.2s) - ajuster si besoin en fonction du CSS
+  };
 
   const renderContent = () => {
     if (activeSection === null) {
@@ -12,7 +60,7 @@ const App: React.FC = () => {
             e.preventDefault();
             setActiveSection('contact');
             document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-          }}>AIDEZ NOUS</a>
+          }}>Aidez nous</a>
         </div>
       );
     }
@@ -40,10 +88,10 @@ const App: React.FC = () => {
               <h2 className="section-title">Front de mer, Saint-Pierre</h2>
               <div className="saint-pierre-layout">
                 <div className="saint-pierre-images">
-                  <img src="/assets/coralia-4.jpg" alt="Vue aérienne de Saint-Pierre" className="main-image" width="800" height="533" />
+                  <img src="/assets/coralia-4.jpg" alt="Vue aérienne de Saint-Pierre" className="main-image clickable-image" onClick={() => openLightbox('/assets/coralia-4.jpg', ['/assets/coralia-4.jpg', '/assets/coralia-5.jpg', '/assets/coralia-6.jpg'])} width="800" height="533" />
                   <div className="image-grid">
-                    <img src="/assets/coralia-5.jpg" alt="Aménagement du lagon" width="400" height="267" />
-                    <img src="/assets/coralia-6.jpg" alt="Zone de baignade" width="400" height="267" />
+                    <img src="/assets/coralia-5.jpg" alt="Aménagement du lagon" className="clickable-image" onClick={() => openLightbox('/assets/coralia-5.jpg', ['/assets/coralia-4.jpg', '/assets/coralia-5.jpg', '/assets/coralia-6.jpg'])} width="400" height="267" />
+                    <img src="/assets/coralia-6.jpg" alt="Zone de baignade" className="clickable-image" onClick={() => openLightbox('/assets/coralia-6.jpg', ['/assets/coralia-4.jpg', '/assets/coralia-5.jpg', '/assets/coralia-6.jpg'])} width="400" height="267" />
                   </div>
                 </div>
                 <div className="saint-pierre-text">
@@ -67,10 +115,10 @@ const App: React.FC = () => {
                   <p className="section-text">Dans une petite portion du bassin pirogue, nous allons creuser à l'intérieur du corail un parcours en forme de labyrinthe unique au monde. Celui-ci offrira un habitat optimal pour la végétation marine et favorisera une biodiversité exceptionnelle. En parcourant ce labyrinthe, les visiteurs pourront découvrir la richesse des écosystèmes marins tout en profitant d'une expérience immersive et éducative.</p>
                 </div>
                 <div className="etang-sale-images">
-                  <img src="/assets/etang-sale.jpg" alt="Bassin Pirogue Etang-Salé" className="main-image" width="800" height="533" />
+                  <img src="/assets/etang-sale.jpg" alt="Bassin Pirogue Etang-Salé" className="main-image clickable-image" onClick={() => openLightbox('/assets/etang-sale.jpg', ['/assets/etang-sale.jpg', '/assets/coralia-7.jpg', '/assets/coralia-8.jpg'])} width="800" height="533" />
                   <div className="image-grid">
-                    <img src="/assets/coralia-7.jpg" alt="Vue du labyrinthe marin" width="400" height="267" />
-                    <img src="/assets/coralia-8.jpg" alt="Détail du labyrinthe" width="400" height="267" />
+                    <img src="/assets/coralia-7.jpg" alt="Vue du labyrinthe marin" className="clickable-image" onClick={() => openLightbox('/assets/coralia-7.jpg', ['/assets/etang-sale.jpg', '/assets/coralia-7.jpg', '/assets/coralia-8.jpg'])} width="400" height="267" />
+                    <img src="/assets/coralia-8.jpg" alt="Détail du labyrinthe" className="clickable-image" onClick={() => openLightbox('/assets/coralia-8.jpg', ['/assets/etang-sale.jpg', '/assets/coralia-7.jpg', '/assets/coralia-8.jpg'])} width="400" height="267" />
                   </div>
                 </div>
               </div>
@@ -84,7 +132,7 @@ const App: React.FC = () => {
               <h2 className="section-title">Une Ferme de Corail</h2>
               <div className="ferme-layout">
                 <div className="ferme-images">
-                  <img src="/assets/ferme-corail.jpg" alt="Ferme de corail" className="main-image" width="800" height="533" />
+                  <img src="/assets/ferme-corail.jpg" alt="Ferme de corail" className="main-image clickable-image" onClick={() => openLightbox('/assets/ferme-corail.jpg', ['/assets/ferme-corail.jpg'])} width="800" height="533" />
                 </div>
                 <div className="ferme-text">
                   <p className="section-text">
@@ -142,38 +190,32 @@ const App: React.FC = () => {
       <nav className="navbar transparent">
         <div className="nav-container">
           <div className="nav-logo">
-            <h2>CORALIA 2032</h2>
+            <h2>Coralia 2032</h2>
           </div>
           <ul className="nav-menu">
             <li><a href="#home" onClick={(e) => {
               e.preventDefault();
-              setActiveSection(null);
-              document.getElementById('root')?.scrollTo({ top: 0, behavior: 'smooth' });
+              handleSectionChange(null, 'root');
             }} className={activeSection === null ? 'active' : ''}>Accueil</a></li>
             <li><a href="#projet" onClick={(e) => {
               e.preventDefault();
-              setActiveSection('projet');
-              document.getElementById('projet')?.scrollIntoView({ behavior: 'smooth' });
+              handleSectionChange('projet', 'projet');
             }} className={activeSection === 'projet' ? 'active' : ''}>Le Projet</a></li>
             <li><a href="#saint-pierre" onClick={(e) => {
               e.preventDefault();
-              setActiveSection('saint-pierre');
-              document.getElementById('saint-pierre')?.scrollIntoView({ behavior: 'smooth' });
+              handleSectionChange('saint-pierre', 'saint-pierre');
             }} className={activeSection === 'saint-pierre' ? 'active' : ''}>Saint-Pierre</a></li>
             <li><a href="#etang-sale" onClick={(e) => {
               e.preventDefault();
-              setActiveSection('etang-sale');
-              document.getElementById('etang-sale')?.scrollIntoView({ behavior: 'smooth' });
+              handleSectionChange('etang-sale', 'etang-sale');
             }} className={activeSection === 'etang-sale' ? 'active' : ''}>Étang-Salé</a></li>
             <li><a href="#ferme" onClick={(e) => {
               e.preventDefault();
-              setActiveSection('ferme');
-              document.getElementById('ferme')?.scrollIntoView({ behavior: 'smooth' });
+              handleSectionChange('ferme', 'ferme');
             }} className={activeSection === 'ferme' ? 'active' : ''}>Ferme</a></li>
             <li><a href="#contact" onClick={(e) => {
               e.preventDefault();
-              setActiveSection('contact');
-              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              handleSectionChange('contact', 'contact');
             }} className={activeSection === 'contact' ? 'active' : ''}>Contact</a></li>
           </ul>
           <div className="hamburger">
@@ -183,11 +225,55 @@ const App: React.FC = () => {
           </div>
         </div>
       </nav>
-      <div className="content-wrapper">
+      <div className={`content-wrapper ${isTransitioning ? 'fade-out' : ''}`}>
         {/* Overlay de chargement pour les transitions entre sections */}
         
         {renderContent()}
       </div>
+      {lightboxState && (
+        <div className="lightbox-overlay" onClick={closeLightbox}>
+          {lightboxState.images.length > 1 && (
+            <button
+              className={`lightbox-arrow lightbox-arrow-left ${lightboxState.currentIndex === 0 ? 'disabled-arrow' : ''}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                showPreviousImage();
+              }}
+              disabled={lightboxState.currentIndex === 0}
+            >&#10094;</button>
+          )}
+          <img
+            src={lightboxState.images[lightboxState.currentIndex]}
+            alt="Enlarged"
+            className="lightbox-image"
+            onClick={(e) => e.stopPropagation()}
+          />
+          {lightboxState.images.length > 1 && (
+            <div className="lightbox-indicators">
+              {lightboxState.images.map((_, index) => (
+                <button
+                  key={index}
+                  className={`indicator-dot ${index === lightboxState.currentIndex ? 'active' : ''}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLightboxState(prevState => prevState ? { ...prevState, currentIndex: index } : null);
+                  }}
+                ></button>
+              ))}
+            </div>
+          )}
+          {lightboxState.images.length > 1 && (
+            <button
+              className={`lightbox-arrow lightbox-arrow-right ${lightboxState.currentIndex === lightboxState.images.length - 1 ? 'disabled-arrow' : ''}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                showNextImage();
+              }}
+              disabled={lightboxState.currentIndex === lightboxState.images.length - 1}
+            >&#10095;</button>
+          )}
+        </div>
+      )}
     </div>
   );
 };

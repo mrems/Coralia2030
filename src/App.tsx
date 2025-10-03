@@ -88,10 +88,10 @@ const App: React.FC = () => {
               <h2 className="section-title">Front de mer, Saint-Pierre</h2>
               <div className="saint-pierre-layout">
                 <div className="saint-pierre-images">
-                  <img src="/assets/coralia-4.jpg" alt="Vue aérienne de Saint-Pierre" className="main-image clickable-image" onClick={() => openLightbox('/assets/coralia-4.jpg', ['/assets/coralia-4.jpg', '/assets/coralia-5.jpg', '/assets/coralia-6.jpg'])} width="800" height="533" />
+                  <img src={import.meta.env.BASE_URL + "assets/coralia-4.jpg"} alt="Vue aérienne de Saint-Pierre" className="main-image clickable-image" onClick={() => openLightbox(import.meta.env.BASE_URL + 'assets/coralia-4.jpg', [import.meta.env.BASE_URL + 'assets/coralia-4.jpg', import.meta.env.BASE_URL + 'assets/coralia-5.jpg', import.meta.env.BASE_URL + 'assets/coralia-6.jpg'])} width="800" height="533" />
                   <div className="image-grid">
-                    <img src="/assets/coralia-5.jpg" alt="Aménagement du lagon" className="clickable-image" onClick={() => openLightbox('/assets/coralia-5.jpg', ['/assets/coralia-4.jpg', '/assets/coralia-5.jpg', '/assets/coralia-6.jpg'])} width="400" height="267" />
-                    <img src="/assets/coralia-6.jpg" alt="Zone de baignade" className="clickable-image" onClick={() => openLightbox('/assets/coralia-6.jpg', ['/assets/coralia-4.jpg', '/assets/coralia-5.jpg', '/assets/coralia-6.jpg'])} width="400" height="267" />
+                    <img src={import.meta.env.BASE_URL + "assets/coralia-5.jpg"} alt="Aménagement du lagon" className="clickable-image" onClick={() => openLightbox(import.meta.env.BASE_URL + 'assets/coralia-5.jpg', [import.meta.env.BASE_URL + 'assets/coralia-4.jpg', import.meta.env.BASE_URL + 'assets/coralia-5.jpg', import.meta.env.BASE_URL + 'assets/coralia-6.jpg'])} width="400" height="267" />
+                    <img src={import.meta.env.BASE_URL + "assets/coralia-6.jpg"} alt="Zone de baignade" className="clickable-image" onClick={() => openLightbox(import.meta.env.BASE_URL + 'assets/coralia-6.jpg', [import.meta.env.BASE_URL + 'assets/coralia-4.jpg', import.meta.env.BASE_URL + 'assets/coralia-5.jpg', import.meta.env.BASE_URL + 'assets/coralia-6.jpg'])} width="400" height="267" />
                   </div>
                 </div>
                 <div className="saint-pierre-text">
@@ -115,10 +115,10 @@ const App: React.FC = () => {
                   <p className="section-text">Dans une petite portion du bassin pirogue, nous allons creuser à l'intérieur du corail un parcours en forme de labyrinthe unique au monde. Celui-ci offrira un habitat optimal pour la végétation marine et favorisera une biodiversité exceptionnelle. En parcourant ce labyrinthe, les visiteurs pourront découvrir la richesse des écosystèmes marins tout en profitant d'une expérience immersive et éducative.</p>
                 </div>
                 <div className="etang-sale-images">
-                  <img src="/assets/etang-sale.jpg" alt="Bassin Pirogue Etang-Salé" className="main-image clickable-image" onClick={() => openLightbox('/assets/etang-sale.jpg', ['/assets/etang-sale.jpg', '/assets/coralia-7.jpg', '/assets/coralia-8.jpg'])} width="800" height="533" />
+                  <img src={import.meta.env.BASE_URL + "assets/etang-sale.jpg"} alt="Bassin Pirogue Etang-Salé" className="main-image clickable-image" onClick={() => openLightbox(import.meta.env.BASE_URL + 'assets/etang-sale.jpg', [import.meta.env.BASE_URL + 'assets/etang-sale.jpg', import.meta.env.BASE_URL + 'assets/coralia-7.jpg', import.meta.env.BASE_URL + 'assets/coralia-8.jpg'])} width="800" height="533" />
                   <div className="image-grid">
-                    <img src="/assets/coralia-7.jpg" alt="Vue du labyrinthe marin" className="clickable-image" onClick={() => openLightbox('/assets/coralia-7.jpg', ['/assets/etang-sale.jpg', '/assets/coralia-7.jpg', '/assets/coralia-8.jpg'])} width="400" height="267" />
-                    <img src="/assets/coralia-8.jpg" alt="Détail du labyrinthe" className="clickable-image" onClick={() => openLightbox('/assets/coralia-8.jpg', ['/assets/etang-sale.jpg', '/assets/coralia-7.jpg', '/assets/coralia-8.jpg'])} width="400" height="267" />
+                    <img src={import.meta.env.BASE_URL + "assets/coralia-7.jpg"} alt="Vue du labyrinthe marin" className="clickable-image" onClick={() => openLightbox(import.meta.env.BASE_URL + 'assets/coralia-7.jpg', [import.meta.env.BASE_URL + 'assets/etang-sale.jpg', import.meta.env.BASE_URL + 'assets/coralia-7.jpg', import.meta.env.BASE_URL + 'assets/coralia-8.jpg'])} width="400" height="267" />
+                    <img src={import.meta.env.BASE_URL + "assets/coralia-8.jpg"} alt="Détail du labyrinthe" className="clickable-image" onClick={() => openLightbox(import.meta.env.BASE_URL + 'assets/coralia-8.jpg', [import.meta.env.BASE_URL + 'assets/etang-sale.jpg', import.meta.env.BASE_URL + 'assets/coralia-7.jpg', import.meta.env.BASE_URL + 'assets/coralia-8.jpg'])} width="400" height="267" />
                   </div>
                 </div>
               </div>
@@ -132,7 +132,7 @@ const App: React.FC = () => {
               <h2 className="section-title">Une Ferme de Corail</h2>
               <div className="ferme-layout">
                 <div className="ferme-images">
-                  <img src="/assets/ferme-corail.jpg" alt="Ferme de corail" className="main-image clickable-image" onClick={() => openLightbox('/assets/ferme-corail.jpg', ['/assets/ferme-corail.jpg'])} width="800" height="533" />
+                  <img src={import.meta.env.BASE_URL + "assets/ferme-corail.jpg"} alt="Ferme de corail" className="main-image clickable-image" onClick={() => openLightbox(import.meta.env.BASE_URL + 'assets/ferme-corail.jpg', [import.meta.env.BASE_URL + 'assets/ferme-corail.jpg'])} width="800" height="533" />
                 </div>
                 <div className="ferme-text">
                   <p className="section-text">
@@ -184,7 +184,7 @@ const App: React.FC = () => {
     <div className="app-container">
       <div className="static-background-image"></div>
       <video className="hero-video-background" autoPlay muted loop playsInline>
-        <source src="/bg.mp4" type="video/mp4" />
+        <source src={import.meta.env.BASE_URL + "bg.mp4"} type="video/mp4" />
       </video>
       
       <nav className="navbar transparent">

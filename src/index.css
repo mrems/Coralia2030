@@ -51,7 +51,7 @@ body {
     height: 100%;
     object-fit: cover;
     z-index: -1;
-    opacity: 0.3;
+    opacity: 0.2;
 }
 
 /* Styles pour les cartes (génériques, applicables à plusieurs sections) */
@@ -237,9 +237,9 @@ body {
     line-height: 1.2;
     color: white;
     font-weight: 600;
-    margin: 0;
+    margin-top: 0.5rem;
     text-align: center;
-    padding: 1rem;
+    padding: .8rem;
     background: linear-gradient(135deg, #0199a6, #00bcd4);
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(1, 153, 166, 0.3);
@@ -317,10 +317,10 @@ body {
 
 .nav-logo h2 {
     color: white;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: bold;
     transition: color 0.3s ease;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .nav-menu {
@@ -335,7 +335,7 @@ body {
     font-weight: 500;
     transition: color 0.3s ease;
     position: relative;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     font-size: 0.95rem;
 }
 
@@ -725,7 +725,7 @@ body {
     font-size: 1.2rem;
     font-weight: 600;
     color: white;
-    background-color: #00bcd4; /* Couleur de bouton personnalisée */
+    background-color: #00cde8; /* Couleur de bouton personnalisée */
     border: none;
     border-radius: 25px;
     text-decoration: none;
@@ -734,7 +734,7 @@ body {
 }
 
 .hero-button:hover {
-    background-color: #0199a6; /* Assombrir au survol */
+    background-color: #00bbd4; /* Assombrir au survol */
     transform: translateY(-2px);
 }
 
@@ -784,17 +784,16 @@ body {
 }
 
 .contact-info a:hover {
-    background: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
 }
 
 #contact.content-section .contact-info a {
     color: white;
-    background: rgba(255, 255, 255, 0.226);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 #contact.content-section .contact-info a:hover {
-    background: rgba(1, 153, 166, 0.3);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 /* Force la couleur du texte de la section Contact à un blanc pur */

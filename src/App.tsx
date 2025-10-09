@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false); // Nouvel état pour la transition
   const [lightboxState, setLightboxState] = useState<{ images: string[]; currentIndex: number } | null>(null); // Nouvel état pour la lightbox
+  const videoRef = useRef<HTMLVideoElement>(null); // Référence pour l'élément vidéo
 
   const openLightbox = (clickedImageSrc: string, allImagesInCurrentSection: string[]) => {
     const currentIndex = allImagesInCurrentSection.indexOf(clickedImageSrc);
@@ -31,6 +32,9 @@ const App: React.FC = () => {
   useEffect(() => {
     // L'animation initiale du hero-content (uniquement au premier chargement) et de la navbar est supprimée.
     // Remettre le comportement par défaut si nécessaire via CSS.
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.8; // Définit la vitesse de lecture à 50%
+    }
   }, []); // Dépendances vides pour n'exécuter qu'une fois au montage du composant
 
   const handleSectionChange = (sectionId: string | null, targetElementId: string | null) => {
@@ -182,9 +186,9 @@ const App: React.FC = () => {
 
   return (
     <div className="app-container">
-      <div className="static-background-image"></div>
-      <video className="hero-video-background" autoPlay muted loop playsInline>
-        <source src={import.meta.env.BASE_URL + "bg.mp4"} type="video/mp4" />
+      <video ref={videoRef} className="hero-video-background" autoPlay muted loop playsInline poster={import.meta.env.BASE_URL + "coralia-1.jpg"} preload="metadata">
+        <source src={import.meta.env.BASE_URL + "coralia.webm"} type="video/webm" />
+        <source src={import.meta.env.BASE_URL + "coralia.mp4"} type="video/mp4" />
       </video>
       
       <nav className="navbar transparent">

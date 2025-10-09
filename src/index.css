@@ -51,7 +51,7 @@ body {
     height: 100%;
     object-fit: cover;
     z-index: -1;
-    opacity: 0.2;
+    opacity: 0.15;
 }
 
 /* Styles pour les cartes (génériques, applicables à plusieurs sections) */
@@ -725,7 +725,7 @@ body {
     font-size: 1.2rem;
     font-weight: 600;
     color: white;
-    background-color: #00cde8; /* Couleur de bouton personnalisée */
+    background-color: #00c3dc; /* Couleur de bouton personnalisée */
     border: none;
     border-radius: 25px;
     text-decoration: none;

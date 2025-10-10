@@ -91,10 +91,10 @@ body {
 
 /* Styles des titres (génériques) */
 .section-title {
-    font-size: 2.25rem; /* (2.5rem * 0.9) */
+    font-size: 2.5rem; /* (2.5rem * 0.9) */
     color: #ffffff;
     text-align: center;
-    margin-bottom: 1.5rem; /* (1rem * 0.9) */
+    margin-bottom: 1rem; /* (1rem * 0.9) */
     position: relative;
 }
 
@@ -112,9 +112,9 @@ body {
 /* Styles du texte (génériques) */
 .section-text {
     font-size: 0.9rem; /* (0.9rem * 0.9) */
-    line-height: 1.2;
+    line-height: 1.5;
     color: white;
-    margin-bottom:1.2rem;
+    margin-bottom:.4rem;
     text-align: left;
     width: 90%;
     max-width: 720px; /* (800px * 0.9) */
@@ -122,13 +122,12 @@ body {
 
 /* Styles de citation (génériques) */
 .section-quote {
-    font-size: 0.99rem; /* (1.1rem * 0.9) */
+    font-size: 1.1rem; /* (1.1rem * 0.9) */
     color: #00bcd4;
     text-align: center;
     font-style: italic;
-    margin: 0;
     padding: 0.27rem; /* (.3rem * 0.9) */
-    margin-bottom: 1.2rem; /* (1rem * 0.9) */
+    margin-bottom: 0.6rem; /* (1rem * 0.9) */
     background: rgba(1, 153, 166, 0.1);
     border-left: 4px solid #0199a6;
     border-radius: 10px;
@@ -189,7 +188,7 @@ body {
     font-weight: 600;
     width: 90%;
     max-width: 540px; /* (600px * 0.9) */
-    margin-bottom: 1.2rem; /* (.2rem * 0.9) */
+    margin-bottom: .4rem; /* (.2rem * 0.9) */
 }
 
 /* Styles des listes (génériques) */
@@ -283,7 +282,7 @@ body {
     position: relative; /* Changé de absolute à relative */
     top: 0;
     width: 100%;
-    height: 63px; /* Hauteur fixe pour la navbar (70px * 0.9) */
+    height: 40px; /* Hauteur fixe pour la navbar (70px * 0.9) */
     background: rgba(255, 255, 255, 0);
     backdrop-filter: blur(0px);
     z-index: 1000;
@@ -389,7 +388,7 @@ body {
 .header-content {
     max-width: 70%;
     padding: 2.4rem;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
     position: relative;
     z-index: 2;
     text-align: center;
@@ -460,7 +459,7 @@ body {
 /* Styles spécifiques pour le texte de la section "Le Projet" */
 #projet .card .section-text {
     width: 80%;
-    max-width: 700px;
+    max-width: 680px;
 }
 
 /* ======================================= *
